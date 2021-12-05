@@ -41,7 +41,7 @@ select * from User_Details;
 delete from User_Details where id = 5;
 delete from User_Details where id = 6;
 
--- creating Candidate_Audit table
+-- creating User_Audit table
 create table User_Audit 
 (
 Audit_Id int primary key identity,
@@ -64,3 +64,21 @@ end
 
 -- inserting values in the table
 insert into User_Details values('samiksha@gmail.com','Samiksha','Chaudhari','9fdfvfvc@yu',56515616,1);
+
+-- creating trigger to get the audit report for the deleted user
+create trigger tr_User_Audit_ForDelete
+on User_Details
+after delete
+as 
+begin
+	declare @id int
+	select @id = id from deleted
+	insert into User_Audit 
+	values ('Existing user with id ' + cast(@id as varchar(50)) + ' is deleted at ' + cast(getdate() as varchar(50)))
+end
+
+select * from User_Details;
+
+-- deleting an existing user and getting the audit report for the deleted user
+delete from User_Details where id = 9;
+select * from User_Audit;
