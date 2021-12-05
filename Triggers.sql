@@ -81,4 +81,20 @@ select * from User_Details;
 
 -- deleting an existing user and getting the audit report for the deleted user
 delete from User_Details where id = 9;
+
 select * from User_Audit;
+
+-- creating a trigger for updating the data
+create trigger tr_User_ForUpdate
+on User_Details
+after update
+as 
+begin
+	select * from inserted
+	select * from deleted
+end
+
+select * from User_Details;
+
+-- updating the table
+update User_Details set first_name = 'Noor', last_name = 'Khan';
