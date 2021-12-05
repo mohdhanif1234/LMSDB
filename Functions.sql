@@ -49,3 +49,23 @@ select dbo.TakeANumber(5);
 
 -- dropping a function
  drop function dbo.TakeANumber;
+
+ create function CheckVotersAge(@age as int)
+ returns varchar(100)
+ as 
+ begin
+	declare @str varchar(100)
+	if @age >=18
+	begin
+		set @str = 'You are eligible to vote'
+	end
+	else 
+	begin
+		set @str = 'You are not eligible to vote'
+	end
+	return @str
+ end
+
+ -- calling the function
+ select dbo.CheckVotersAge(20);
+ select dbo.CheckVotersAge(15);
