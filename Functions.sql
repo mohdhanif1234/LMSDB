@@ -1,6 +1,7 @@
 -- retrieving the details from the CpuLogData table
 select * from [CpuLogData2019-11-17-new];
 
+-- SCALAR FUNCTIONS - USER DEFINED FUNCTIONS
 -- creating a function without a parameter
 create function DisplayMessage()
 returns varchar(100)
@@ -80,3 +81,14 @@ select dbo.TakeANumber(5);
 
  -- calling the function
  select dbo.GetMyDate();
+
+ -- INLINE TABLE VALUED FUNCTIONS - USER DEFINED FUNCTIONS
+ 
+ -- creating an inline table valued function without parameters
+ create function fn_GetCpuLogData()
+ returns table
+ as
+ return (select * from [CpuLogData2019-11-17-new])
+
+ -- calling the function
+ select * from dbo.fn_GetCpuLogData();
