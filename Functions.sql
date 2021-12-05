@@ -46,3 +46,6 @@ end
 
 -- calling the function"
 select dbo.TakeANumber(5);
+
+-- dropping a function
+ drop function dbo.TakeANumber;
