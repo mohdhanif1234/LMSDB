@@ -30,3 +30,14 @@ end
  end
 
  execute spGetCandidatesByIdAndEmail 1, 'hani@gmail.com';
+
+ -- altering the stored procedure
+ alter procedure spGetCandidatesByIdAndEmail
+ @Id int,
+ @Email varchar(100)
+ as
+ begin
+ select first_name, mobile_num from Fellowship_Candidates where id = @Id and email = @Email;
+ end
+
+ execute spGetCandidatesByIdAndEmail 1, 'hani@gmail.com';
