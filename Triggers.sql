@@ -11,3 +11,15 @@ end
 
 -- inserting the data in the table for activating the trigger
 insert into User_Details values('rani@gmail.com','Rani','Gupta','326vxh@yu',54161151515,1);
+
+-- altering the trigger
+alter trigger tr_Candidate_ForInsert
+on User_Details
+after insert
+as 
+begin
+	select * from inserted
+end
+
+-- inserting the data in the table for activating the trigger
+insert into User_Details values('vidya@gmail.com','Vidya','Sagar','4854dcrdre@yu',11641116,1);
