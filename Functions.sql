@@ -92,3 +92,12 @@ select dbo.TakeANumber(5);
 
  -- calling the function
  select * from dbo.fn_GetCpuLogData();
+
+ -- creating an inline table valued function with parameters
+ create function fn_GetCpuWorkTime(@Cpu_Working_Time1 float, @Cpu_Working_Time2 float)
+ returns table
+ as 
+ return (select * from [CpuLogData2019-11-17-new] where Cpu_Working_Time >= @Cpu_Working_Time1 and Cpu_Working_Time <= @Cpu_Working_Time2)
+
+ -- calling the function
+ select * from dbo.fn_GetCpuWorkTime(2000,2500);
