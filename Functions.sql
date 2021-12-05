@@ -11,3 +11,14 @@ end
 
 -- calling the function
 select dbo.DisplayMessage();
+
+-- creating a scalar function with a single parameter
+create function TakeANumber(@num as int)
+returns int
+as 
+begin
+return(@num * @num)
+end
+
+-- calling the function"
+select dbo.TakeANumber(5);
