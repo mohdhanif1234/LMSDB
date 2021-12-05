@@ -47,3 +47,15 @@ end
 
  -- deleting a stored procedure
  drop procedure spGetCandidatesByIdAndEmail;
+
+ -- using 'with encryption' in stored procedures (It encrypts the text of a particular stored procedure which we want to view)
+ alter procedure spGetCandidatesByIdAndEmail
+ @Id int,
+ @Email varchar(100)
+ with encryption
+ as
+ begin
+ select first_name, mobile_num from Fellowship_Candidates where id = @Id and email = @Email;
+ end
+
+sp_helptext spGetCandidatesByIdAndEmail;
