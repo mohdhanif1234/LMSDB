@@ -69,3 +69,14 @@ select dbo.TakeANumber(5);
  -- calling the function
  select dbo.CheckVotersAge(20);
  select dbo.CheckVotersAge(15);
+
+ -- creating a function to call another function
+ create function GetMyDate()
+ returns datetime
+ as
+ begin
+	return getdate()
+ end
+
+ -- calling the function
+ select dbo.GetMyDate();
