@@ -10,3 +10,13 @@ end
 
  execute spGetFellowshipCandidatesDetails;
 
+
+ -- creating a stored procedure with a single parameter
+ create procedure spGetCandidatesById
+ @Id int
+ as 
+ begin
+ select * from Fellowship_Candidates where id = @Id;
+ end
+
+ execute spGetCandidatesById 2;
