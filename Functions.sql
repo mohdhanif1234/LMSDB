@@ -101,3 +101,23 @@ select dbo.TakeANumber(5);
 
  -- calling the function
  select * from dbo.fn_GetCpuWorkTime(2000,2500);
+
+ select * from [CpuLogData2019-11-17-new];
+
+ -- MULTISTATEMENT TABLE VALUED FUNCTIONS - USER DEFINED FUNCTIONS
+
+-- creating a multistatment table valued parametrized function
+ create function fn_GetCpuLogDataByCpuIdleTime(@cpu_idle_time float)
+ returns @myTable table (Cpu_Avg_Load_Over_15_Mins float, User_Name varchar(50), Technology varchar(50))
+ as 
+ begin
+	insert into @myTable
+	select cpu_avg_load_over_15_min, user_name, technology from [CpuLogData2019-11-17-new] where Cpu_idle_Time = @cpu_idle_time
+	return
+ end
+
+ -- calling the function to retrieve the table
+ select * from [dbo].[fn_GetCpuLogDataByCpuIdleTime] (276422.96);
+ select * from [dbo].[fn_GetCpuLogDataByCpuIdleTime] (269460.2);
+ select * from [dbo].[fn_GetCpuLogDataByCpuIdleTime] (136340.09);
+ select * from [dbo].[fn_GetCpuLogDataByCpuIdleTime] (276524.06);
