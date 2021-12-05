@@ -35,3 +35,14 @@ end
 select dbo.Substraction(5,10);
 select dbo.Substraction(5,6);
 select dbo.Substraction(5,1);
+
+-- altering a function
+alter function TakeANumber(@num as int)
+returns int
+as 
+begin
+return(@num * @num * @num)
+end
+
+-- calling the function"
+select dbo.TakeANumber(5);
