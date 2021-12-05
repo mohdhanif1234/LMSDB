@@ -44,3 +44,6 @@ end
 
  -- seeing the text of the stored procedure
  sp_helptext spGetCandidatesByIdAndEmail;
+
+ -- deleting a stored procedure
+ drop procedure spGetCandidatesByIdAndEmail;
