@@ -98,3 +98,6 @@ select * from User_Details;
 
 -- updating the table
 update User_Details set first_name = 'Noor', last_name = 'Khan';
+
+-- viewing the code of the trigger
+sp_helptext [tr_User_Audit_ForInsert];
