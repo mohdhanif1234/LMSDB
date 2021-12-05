@@ -10,7 +10,6 @@ end
 
  execute spGetFellowshipCandidatesDetails;
 
-
  -- creating a stored procedure with a single parameter
  create procedure spGetCandidatesById
  @Id int
@@ -20,3 +19,14 @@ end
  end
 
  execute spGetCandidatesById 2;
+
+ -- creating a stored procedure with multiple parameters
+ create procedure spGetCandidatesByIdAndEmail
+ @Id int,
+ @Email varchar(100)
+ as
+ begin
+ select * from Fellowship_Candidates where id = @Id and email = @Email;
+ end
+
+ execute spGetCandidatesByIdAndEmail 1, 'hani@gmail.com';
