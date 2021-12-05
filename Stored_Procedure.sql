@@ -52,10 +52,22 @@ end
  alter procedure spGetCandidatesByIdAndEmail
  @Id int,
  @Email varchar(100)
- with encryption
  as
  begin
  select first_name, mobile_num from Fellowship_Candidates where id = @Id and email = @Email;
  end
 
 sp_helptext spGetCandidatesByIdAndEmail;
+
+-- creating a stored procedure with ouput parameter
+create procedure spGetCandidatesbyMobNum
+@mobile_num bigint,
+@CandidateCount int output
+as
+begin
+select @CandidateCount = Count(id) from Fellowship_Candidates where mobile_num = @mobile_num;
+end
+
+Declare @TotalCandidates int
+execute spGetCandidatesbyMobNum 8956748596, @TotalCandidates output;
+select @TotalCandidates;
