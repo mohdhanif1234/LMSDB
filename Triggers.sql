@@ -40,3 +40,27 @@ select * from User_Details;
 -- deleting theb data from the table and displaying the deleted data with the help of deleted keyword
 delete from User_Details where id = 5;
 delete from User_Details where id = 6;
+
+-- creating Candidate_Audit table
+create table User_Audit 
+(
+Audit_Id int primary key identity,
+Audit_Info varchar(max)
+);
+
+select * from User_Audit;
+
+-- creating a trigger for candidate audit for insert operation
+create trigger tr_User_Audit_ForInsert
+on User_Details
+after insert
+as 
+begin
+	declare @id int
+	select @id = id from inserted
+	insert into User_Audit 
+	values ('Candidate with id: ' + cast(@id as varchar(50)) + ' is added at ' + cast(getdate() as varchar(50)))
+end
+
+-- inserting values in the table
+insert into User_Details values('samiksha@gmail.com','Samiksha','Chaudhari','9fdfvfvc@yu',56515616,1);
