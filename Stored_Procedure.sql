@@ -41,3 +41,6 @@ end
  end
 
  execute spGetCandidatesByIdAndEmail 1, 'hani@gmail.com';
+
+ -- seeing the text of the stored procedure
+ sp_helptext spGetCandidatesByIdAndEmail;
