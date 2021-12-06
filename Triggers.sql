@@ -97,7 +97,23 @@ end
 select * from User_Details;
 
 -- updating the table
-update User_Details set first_name = 'Noor', last_name = 'Khan';
+update User_Details set first_name = 'Noor', last_name = 'Khan' where id = 8;
 
 -- viewing the code of the trigger
 sp_helptext [tr_User_Audit_ForInsert];
+
+-- DML INSTEAD OF TRIGGERS
+
+-- creating instead of insert trigger (This trigger does not allow any value to be inserted in the table)
+create trigger tr_User_InsteadOf_Insert
+on User_Details
+instead of insert
+as 
+begin
+	print 'You are not allowed to insert data in this table !!'
+end
+
+-- inserting values in the table
+insert into User_Details values('murtuza@gmail.com','Murtuza','Nullwala','bjbdshcbjs@yu',456845,1);
+
+select * from User_Details;
