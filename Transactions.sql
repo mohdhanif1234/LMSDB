@@ -21,3 +21,18 @@ delete Hired_Candidates where id = 5;
  begin catch
 	print 'You cannot insert an integer in a string column'
  end catch
+
+ -- Retrieving Error Information
+
+ begin try
+ update Hired_Candidates set last_name = 25 where id = 2
+ end try
+ begin catch
+	select
+	ERROR_NUMBER() as [Error Number],
+	ERROR_SEVERITY() as [Error Severity],
+	ERROR_STATE() as [Error State Number],
+	ERROR_PROCEDURE() as [SP Name],
+	ERROR_LINE() as [Error Line Number],
+	ERROR_MESSAGE() as [Error Message Text]
+ end catch
