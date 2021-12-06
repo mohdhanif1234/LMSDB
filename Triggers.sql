@@ -290,3 +290,8 @@ as
 begin
 	insert into User_Details values('murtuza@gmail.com','Murtuza','Nullwala','bjbdshcbjs@yu',456845,1,'male');
 end
+
+-- disabling the trigger
+disable trigger tr_ddl_SP_CREATE on database;
+-- enabling the trigger
+enable trigger tr_ddl_SP_CREATE on database;
