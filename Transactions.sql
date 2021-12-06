@@ -36,3 +36,21 @@ delete Hired_Candidates where id = 5;
 	ERROR_LINE() as [Error Line Number],
 	ERROR_MESSAGE() as [Error Message Text]
  end catch
+
+ -- creating a stored procedure to retrieve the SP name also
+ create procedure sp_MyNewProcedure
+ as
+ begin
+ begin try
+ update Hired_Candidates set last_name = 25 where id = 2
+ end try
+ begin catch
+	select
+	ERROR_NUMBER() as [Error Number],
+	ERROR_SEVERITY() as [Error Severity],
+	ERROR_STATE() as [Error State Number],
+	ERROR_PROCEDURE() as [SP Name],
+	ERROR_LINE() as [Error Line Number],
+	ERROR_MESSAGE() as [Error Message Text]
+ end catch
+ end
