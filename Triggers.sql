@@ -259,3 +259,15 @@ end
  
  -- dropping a table
 drop table Test_Table;
+
+-- creating a single trigger for create, alter and drop events
+create trigger tr_ddl_table_for_three_events
+on database 
+for CREATE_TABLE, ALTER_TABLE, DROP_TABLE
+as
+begin
+	print 'You have just created, altered or dropped a table !!';
+end
+
+create table Test_Table (id int);
+drop table Test_Table;
