@@ -117,3 +117,18 @@ end
 insert into User_Details values('murtuza@gmail.com','Murtuza','Nullwala','bjbdshcbjs@yu',456845,1);
 
 select * from User_Details;
+
+-- creating instead of update trigger (This trigger does not allow any value to be updated in the table)
+create trigger tr_User_InsteadOf_Update
+on User_Details
+instead of update
+as 
+begin
+	print 'You are not allowed to update data in this table !!'
+end
+
+-- updating values in the table
+update User_Details set first_name = 'Mohd', last_name = 'Haneef' where id = 1;
+
+select * from User_Details;
+
