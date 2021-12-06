@@ -271,3 +271,22 @@ end
 
 create table Test_Table (id int);
 drop table Test_Table;
+
+-- creating a trigger to restrict the creation of a stored procedure
+create trigger tr_ddl_SP_CREATE
+on database 
+for CREATE_PROCEDURE
+as
+begin
+	rollback --rollback command will not allow the stored procedure to be created
+	print 'You are not allowed to create a stored procedure !!';
+end
+
+select * from User_Details;
+
+-- creating a stored procedure for data insertion
+create procedure sp_myProcedureForInsertion
+as
+begin
+	insert into User_Details values('murtuza@gmail.com','Murtuza','Nullwala','bjbdshcbjs@yu',456845,1,'male');
+end
