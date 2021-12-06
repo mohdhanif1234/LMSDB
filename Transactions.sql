@@ -7,4 +7,7 @@ update Hired_Candidates set first_name = 'Murtuza', last_name = 'Nullwala' where
 -- committing a transaction
 commit transaction; --uncommitted data is not saved in other connection
 
-rollback transaction; --undo
+rollback transaction; --undo 
+
+-- delete transaction
+delete Hired_Candidates where id = 5;
