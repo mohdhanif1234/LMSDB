@@ -231,3 +231,19 @@ end
 
 -- creating table named Test_Table
 create table Test_Table (id int);
+
+-- creating a DDL trigger for altering a table
+create trigger tr_ddl_table_alter
+on database
+for ALTER_TABLE
+as
+begin
+	print 'You have altered a table !!'
+end
+ 
+-- altering the table by adding the column of gender
+alter table User_Details add
+gender varchar(10);
+
+-- retrieving the data from the table
+select * from User_Details;
