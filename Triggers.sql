@@ -247,3 +247,15 @@ gender varchar(10);
 
 -- retrieving the data from the table
 select * from User_Details;
+
+-- creating a DDL trigger for dropping a table
+create trigger tr_ddl_table_drop
+on database
+for DROP_TABLE
+as
+begin
+	print 'You have dropped a table !!'
+end
+ 
+ -- dropping a table
+drop table Test_Table;
