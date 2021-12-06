@@ -16,9 +16,8 @@ delete Hired_Candidates where id = 5;
 -- TRY CATCH IN SQL SERVER
  
  begin try
- select 10/0
- select * from Hired_Candidates
+ update Hired_Candidates set last_name = 25 where id = 2
  end try
  begin catch
-	print 'You cannot divide a number by zero'
+	print 'You cannot insert an integer in a string column'
  end catch
