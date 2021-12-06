@@ -54,3 +54,23 @@ delete Hired_Candidates where id = 5;
 	ERROR_MESSAGE() as [Error Message Text]
  end catch
  end
+
+ -- TRANSACTIONS WITH TRY CATCH
+
+ select * from Hired_Candidates;
+
+ begin try
+ begin transaction
+ insert into Hired_Candidates values('Murtuza','Shabbir','Nulwala','ftgrh@gmail.com','54541616','Pune','2020-10-07','Mtech','75.65','769042','754285','Developer','good','good','good','good','','1');
+ insert into Hired_Candidates values('Manzur','Dilawar','Sarguru','qgfwyqgfy@gmail.com','844616163','Mumbra','2020-10-07','Mtech','75.65','769042','754285','Developer','good','good','good','good','','1');
+ insert into Hired_Candidates values('Juned','Danish','Qureshi','qaqsw@gmail.com','5515151','Delhi','2020-10-07','Mtech','75.65','769042','754285','Developer','good','good','good','good','','1');
+ commit transaction --permanent data save
+ print 'Transaction Successfully Done !!';
+ end try
+
+ begin catch
+ rollback transaction
+ print 'Transaction Failed';
+ end catch
+ select ERROR_MESSAGE() as [Error Message];
+ select * from Hired_Candidates;
