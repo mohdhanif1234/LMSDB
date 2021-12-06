@@ -217,3 +217,17 @@ delete from User_Details where id = 1;
 
 -- retrieving the data in the audit table
 select * from tbl_User_Audit;
+
+-- DDL TRIGGERS
+
+-- creating a DDL trigger for table creation
+create trigger tr_ddl_table_create
+on database
+for CREATE_TABLE
+as
+begin
+	print 'New table created !!'
+end
+
+-- creating table named Test_Table
+create table Test_Table (id int);
