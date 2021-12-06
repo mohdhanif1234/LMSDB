@@ -132,3 +132,16 @@ update User_Details set first_name = 'Mohd', last_name = 'Haneef' where id = 1;
 
 select * from User_Details;
 
+-- creating instead of delete trigger (This trigger does not allow any value to be deleted from the table)
+create trigger tr_User_InsteadOf_Delete
+on User_Details
+instead of delete
+as 
+begin
+	print 'You are not allowed to delete data from this table !!'
+end
+
+-- deleting values from the table
+delete from User_Details where id = 1;
+
+select * from User_Details;
