@@ -166,7 +166,7 @@ begin
 	values ('Someone tried to insert the data in User_Details table at: ' + cast(getdate() as varchar(50)))
 end
 
--- deleting the previously created instead of trigger
+-- deleting the previously created instead of insert trigger
 drop trigger[tr_User_InsteadOf_Insert];
 
 -- inserting the data in the table
@@ -175,3 +175,24 @@ insert into User_Details values('murtuza@gmail.com','Murtuza','Nullwala','bjbdsh
 -- retrieving the data in the audit table
 select * from tbl_User_Audit;
 select * from User_Details;
+
+-- creating an audit trigger which will display the given message in audit table to indicate if 
+--someone has tried to update any data in the User_Details table, 
+-- but this query will not work since an instead of update trigger has already been created for the User_Details table
+create trigger tr_User_InsteadOf_Update_Audit
+on User_Details
+instead of update
+as 
+begin
+	insert into tbl_User_Audit
+	values ('Someone tried to update the data in User_Details table at: ' + cast(getdate() as varchar(50)))
+end
+
+-- deleting the previously created instead of  update trigger
+drop trigger[tr_User_InsteadOf_Update];
+
+-- updating the data in the table
+update User_Details set first_name = 'Mohd', last_name = 'Haneef' where id = 1;
+
+-- retrieving the data in the audit table
+select * from tbl_User_Audit;
