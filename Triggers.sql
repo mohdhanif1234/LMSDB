@@ -196,3 +196,24 @@ update User_Details set first_name = 'Mohd', last_name = 'Haneef' where id = 1;
 
 -- retrieving the data in the audit table
 select * from tbl_User_Audit;
+
+-- creating an audit trigger which will display the given message in audit table to indicate if 
+--someone has tried to delete any data from the User_Details table, 
+-- but this query will not work since an instead of update trigger has already been created for the User_Details table
+create trigger tr_User_InsteadOf_Delete_Audit
+on User_Details
+instead of delete
+as 
+begin
+	insert into tbl_User_Audit
+	values ('Someone tried to delete the data from User_Details table at: ' + cast(getdate() as varchar(50)))
+end
+
+-- deleting the previously created instead of delete trigger
+drop trigger[tr_User_InsteadOf_Delete];
+
+-- deleting the data from the table
+delete from User_Details where id = 1;
+
+-- retrieving the data in the audit table
+select * from tbl_User_Audit;
