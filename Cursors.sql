@@ -8,6 +8,7 @@ declare myCursor cursor scroll for select * from User_Details
 open myCursor
 -- methods of cursors
 fetch first from myCursor
+fetch next from myCursor
 -- closing a cursor
 close myCursor
 -- de-allocating a cursor
