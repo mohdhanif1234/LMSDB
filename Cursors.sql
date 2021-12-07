@@ -11,6 +11,7 @@ fetch first from myCursor
 fetch next from myCursor
 fetch last from myCursor
 fetch prior from myCursor
+fetch absolute 4 from myCursor
 -- closing a cursor
 close myCursor
 -- de-allocating a cursor
