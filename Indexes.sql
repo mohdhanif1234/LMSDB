@@ -12,13 +12,18 @@ alter table [CpuLogData2019-11-17-new] add Id int primary key identity;
 create clustered index ix_CpuLogData_Id_Clustered
 on [CpuLogData2019-11-17-new] (Id asc);
 
--- creating a non clustered index for files_changed
-create nonclustered index ni_CpuLogData_files_changed
-on [CpuLogData2019-11-17-new] (files_changed asc);
-
 -- creating one cluster index for multiple columns
 create clustered index ix_CpuLogData_CpuWorkTime_CpuPercent_Clustered
 on [CpuLogData2019-11-17-new] (Cpu_idle_time desc, cpu_percent asc);
 
 sp_helpindex [CpuLogData2019-11-17-new];
+
+-- creating a non clustered index for files_changed
+create nonclustered index ni_CpuLogData_files_changed
+on [CpuLogData2019-11-17-new] (files_changed asc);
+
+create unique clustered index UCIX_CpuLogData_Id
+on [CpuLogData2019-11-17-new] (Id asc);
+
+
 
