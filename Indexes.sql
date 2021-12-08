@@ -8,5 +8,9 @@ select * from [dbo].[CpuLogData2019-11-17-new] where Cpu_idle_Time > 100000 and 
 
 alter table [CpuLogData2019-11-17-new] add Id int primary key identity;
 
+-- creating a cluster index
 create clustered index ix_CpuLogData_Id_Clustered
 on [CpuLogData2019-11-17-new] (Id asc);
+
+
+
