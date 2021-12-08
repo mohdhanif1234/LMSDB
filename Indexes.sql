@@ -12,5 +12,8 @@ alter table [CpuLogData2019-11-17-new] add Id int primary key identity;
 create clustered index ix_CpuLogData_Id_Clustered
 on [CpuLogData2019-11-17-new] (Id asc);
 
+-- creating one cluster index for multiple columns
+create clustered index ix_CpuLogData_CpuWorkTime_CpuPercent_Clustered
+on [CpuLogData2019-11-17-new] (Cpu_idle_time desc, cpu_percent asc);
 
-
+sp_helpindex [CpuLogData2019-11-17-new];
